@@ -1,0 +1,380 @@
+<ShowPlanXML xmlns="http://schemas.microsoft.com/sqlserver/2004/07/showplan" Version="1.557" Build="15.0.2000.1574">
+	<BatchSequence>
+		<Batch>
+			<Statements>
+				<StmtSimple StatementText="SELECT T1.a, T1.b, SUM(T1.c) AS Sum_Tc, T2.x &#xa;FROM T1 &#xa;LEFT OUTER JOIN T2 ON T1.a = T2.a AND T1.c &gt; T2.x &#xa;LEFT OUTER JOIN T3 ON T2.x = T3.x &#xa;GROUP BY T1.a, T1.b, T2.x" StatementId="1" StatementCompId="1" StatementType="SELECT" RetrievedFromCache="true" StatementSubTreeCost="0.0212205" StatementEstRows="1" SecurityPolicyApplied="false" StatementOptmLevel="FULL" QueryHash="0xB0400B07BE53406A" QueryPlanHash="0xBDEF2EF0E33A641D" StatementOptmEarlyAbortReason="GoodEnoughPlanFound" CardinalityEstimationModelVersion="150">
+					<StatementSetOptions QUOTED_IDENTIFIER="true" ARITHABORT="true" CONCAT_NULL_YIELDS_NULL="true" ANSI_NULLS="true" ANSI_PADDING="true" ANSI_WARNINGS="true" NUMERIC_ROUNDABORT="false">
+					</StatementSetOptions>
+					<QueryPlan DegreeOfParallelism="1" MemoryGrant="1024" CachedPlanSize="48" CompileTime="22" CompileCPU="22" CompileMemory="264">
+						<MemoryGrantInfo SerialRequiredMemory="512" SerialDesiredMemory="544" RequiredMemory="512" DesiredMemory="544" RequestedMemory="1024" GrantWaitTime="0" MaxQueryMemory="458160" GrantedMemory="1024" MaxUsedMemory="0">
+						</MemoryGrantInfo>
+						<OptimizerHardwareDependentProperties EstimatedAvailableMemoryGrant="80358" EstimatedPagesCached="20089" EstimatedAvailableDegreeOfParallelism="2" MaxCompileMemory="1778808">
+						</OptimizerHardwareDependentProperties>
+						<TraceFlags IsCompileTime="1">
+							<TraceFlag Value="822" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="833" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="835" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="851" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="3425" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="5504" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="8052" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="8076" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="8904" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="9038" Scope="Global">
+							</TraceFlag>
+						</TraceFlags>
+						<TraceFlags IsCompileTime="0">
+							<TraceFlag Value="822" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="833" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="835" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="851" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="3425" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="5504" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="8052" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="8076" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="8904" Scope="Global">
+							</TraceFlag>
+							<TraceFlag Value="9038" Scope="Global">
+							</TraceFlag>
+						</TraceFlags>
+						<QueryTimeStats ElapsedTime="0" CpuTime="0">
+						</QueryTimeStats>
+						<RelOp NodeId="0" PhysicalOp="Compute Scalar" LogicalOp="Compute Scalar" EstimateRows="1" EstimateIO="0" EstimateCPU="0" AvgRowSize="23" EstimatedTotalSubtreeCost="0.0212205" Parallel="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row">
+							<OutputList>
+								<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="a">
+								</ColumnReference>
+								<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="b">
+								</ColumnReference>
+								<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Column="x">
+								</ColumnReference>
+								<ColumnReference Column="Expr1009">
+								</ColumnReference>
+							</OutputList>
+							<ComputeScalar>
+								<DefinedValues>
+									<DefinedValue>
+										<ColumnReference Column="Expr1009">
+										</ColumnReference>
+										<ScalarOperator ScalarString="CASE WHEN [Expr1010]=(0) THEN NULL ELSE [Expr1011] END">
+											<IF>
+												<Condition>
+													<ScalarOperator>
+														<Compare CompareOp="EQ">
+															<ScalarOperator>
+																<Identifier>
+																	<ColumnReference Column="Expr1010">
+																	</ColumnReference>
+																</Identifier>
+															</ScalarOperator>
+															<ScalarOperator>
+																<Const ConstValue="(0)">
+																</Const>
+															</ScalarOperator>
+														</Compare>
+													</ScalarOperator>
+												</Condition>
+												<Then>
+													<ScalarOperator>
+														<Const ConstValue="NULL">
+														</Const>
+													</ScalarOperator>
+												</Then>
+												<Else>
+													<ScalarOperator>
+														<Identifier>
+															<ColumnReference Column="Expr1011">
+															</ColumnReference>
+														</Identifier>
+													</ScalarOperator>
+												</Else>
+											</IF>
+										</ScalarOperator>
+									</DefinedValue>
+								</DefinedValues>
+								<RelOp NodeId="1" PhysicalOp="Stream Aggregate" LogicalOp="Aggregate" EstimateRows="1" EstimateIO="0" EstimateCPU="1.1e-06" AvgRowSize="23" EstimatedTotalSubtreeCost="0.0212205" Parallel="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row">
+									<OutputList>
+										<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="a">
+										</ColumnReference>
+										<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="b">
+										</ColumnReference>
+										<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Column="x">
+										</ColumnReference>
+										<ColumnReference Column="Expr1010">
+										</ColumnReference>
+										<ColumnReference Column="Expr1011">
+										</ColumnReference>
+									</OutputList>
+									<RunTimeInformation>
+										<RunTimeCountersPerThread Thread="0" ActualRows="0" Batches="0" ActualElapsedms="0" ActualCPUms="0" ActualEndOfScans="1" ActualExecutions="1" ActualExecutionMode="Row">
+										</RunTimeCountersPerThread>
+									</RunTimeInformation>
+									<StreamAggregate>
+										<DefinedValues>
+											<DefinedValue>
+												<ColumnReference Column="Expr1010">
+												</ColumnReference>
+												<ScalarOperator ScalarString="COUNT_BIG([Projectpt2].[dbo].[T1].[c])">
+													<Aggregate Distinct="0" AggType="COUNT_BIG">
+														<ScalarOperator>
+															<Identifier>
+																<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="c">
+																</ColumnReference>
+															</Identifier>
+														</ScalarOperator>
+													</Aggregate>
+												</ScalarOperator>
+											</DefinedValue>
+											<DefinedValue>
+												<ColumnReference Column="Expr1011">
+												</ColumnReference>
+												<ScalarOperator ScalarString="SUM([Projectpt2].[dbo].[T1].[c])">
+													<Aggregate Distinct="0" AggType="SUM">
+														<ScalarOperator>
+															<Identifier>
+																<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="c">
+																</ColumnReference>
+															</Identifier>
+														</ScalarOperator>
+													</Aggregate>
+												</ScalarOperator>
+											</DefinedValue>
+										</DefinedValues>
+										<GroupBy>
+											<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="a">
+											</ColumnReference>
+											<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="b">
+											</ColumnReference>
+											<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Column="x">
+											</ColumnReference>
+										</GroupBy>
+										<RelOp NodeId="2" PhysicalOp="Sort" LogicalOp="Sort" EstimateRows="1" EstimateIO="0.0112613" EstimateCPU="0.000100023" AvgRowSize="23" EstimatedTotalSubtreeCost="0.0212194" Parallel="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row">
+											<OutputList>
+												<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="a">
+												</ColumnReference>
+												<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="b">
+												</ColumnReference>
+												<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="c">
+												</ColumnReference>
+												<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Column="x">
+												</ColumnReference>
+											</OutputList>
+											<MemoryFractions Input="1" Output="1">
+											</MemoryFractions>
+											<RunTimeInformation>
+												<RunTimeCountersPerThread Thread="0" ActualRows="0" Batches="0" ActualElapsedms="0" ActualCPUms="0" ActualScans="0" ActualLogicalReads="0" ActualPhysicalReads="0" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" ActualRebinds="1" ActualRewinds="0" ActualEndOfScans="1" ActualExecutions="1" InputMemoryGrant="1024" OutputMemoryGrant="640" UsedMemoryGrant="0" ActualExecutionMode="Row">
+												</RunTimeCountersPerThread>
+											</RunTimeInformation>
+											<Sort Distinct="0">
+												<OrderBy>
+													<OrderByColumn Ascending="1">
+														<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="a">
+														</ColumnReference>
+													</OrderByColumn>
+													<OrderByColumn Ascending="1">
+														<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="b">
+														</ColumnReference>
+													</OrderByColumn>
+													<OrderByColumn Ascending="1">
+														<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Column="x">
+														</ColumnReference>
+													</OrderByColumn>
+												</OrderBy>
+												<RelOp NodeId="3" PhysicalOp="Nested Loops" LogicalOp="Left Outer Join" EstimateRows="1" EstimateIO="0" EstimateCPU="4.18e-06" AvgRowSize="23" EstimatedTotalSubtreeCost="0.00985814" Parallel="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row">
+													<OutputList>
+														<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="a">
+														</ColumnReference>
+														<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="b">
+														</ColumnReference>
+														<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="c">
+														</ColumnReference>
+														<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Column="x">
+														</ColumnReference>
+													</OutputList>
+													<RunTimeInformation>
+														<RunTimeCountersPerThread Thread="0" ActualRows="0" Batches="0" ActualElapsedms="0" ActualCPUms="0" ActualEndOfScans="1" ActualExecutions="1" ActualExecutionMode="Row">
+														</RunTimeCountersPerThread>
+													</RunTimeInformation>
+													<NestedLoops Optimized="0">
+														<OuterReferences>
+															<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Column="x">
+															</ColumnReference>
+														</OuterReferences>
+														<RelOp NodeId="4" PhysicalOp="Nested Loops" LogicalOp="Left Outer Join" EstimateRows="1" EstimateIO="0" EstimateCPU="4.18e-06" AvgRowSize="23" EstimatedTotalSubtreeCost="0.00657086" Parallel="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row">
+															<OutputList>
+																<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="a">
+																</ColumnReference>
+																<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="b">
+																</ColumnReference>
+																<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="c">
+																</ColumnReference>
+																<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Column="x">
+																</ColumnReference>
+															</OutputList>
+															<RunTimeInformation>
+																<RunTimeCountersPerThread Thread="0" ActualRows="0" Batches="0" ActualElapsedms="0" ActualCPUms="0" ActualEndOfScans="1" ActualExecutions="1" ActualExecutionMode="Row">
+																</RunTimeCountersPerThread>
+															</RunTimeInformation>
+															<NestedLoops Optimized="0">
+																<OuterReferences>
+																	<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="a">
+																	</ColumnReference>
+																	<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="c">
+																	</ColumnReference>
+																</OuterReferences>
+																<RelOp NodeId="5" PhysicalOp="Clustered Index Scan" LogicalOp="Clustered Index Scan" EstimateRows="1" EstimatedRowsRead="1" EstimateIO="0.003125" EstimateCPU="0.0001581" AvgRowSize="19" EstimatedTotalSubtreeCost="0.0032831" TableCardinality="0" Parallel="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row">
+																	<OutputList>
+																		<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="a">
+																		</ColumnReference>
+																		<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="b">
+																		</ColumnReference>
+																		<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="c">
+																		</ColumnReference>
+																	</OutputList>
+																	<RunTimeInformation>
+																		<RunTimeCountersPerThread Thread="0" ActualRows="0" Batches="0" ActualElapsedms="0" ActualCPUms="0" ActualScans="1" ActualLogicalReads="0" ActualPhysicalReads="0" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" ActualEndOfScans="1" ActualExecutions="1" ActualExecutionMode="Row">
+																		</RunTimeCountersPerThread>
+																	</RunTimeInformation>
+																	<IndexScan Ordered="0" ForcedIndex="0" ForceScan="0" NoExpandHint="0" Storage="RowStore">
+																		<DefinedValues>
+																			<DefinedValue>
+																				<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="a">
+																				</ColumnReference>
+																			</DefinedValue>
+																			<DefinedValue>
+																				<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="b">
+																				</ColumnReference>
+																			</DefinedValue>
+																			<DefinedValue>
+																				<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="c">
+																				</ColumnReference>
+																			</DefinedValue>
+																		</DefinedValues>
+																		<Object Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Index="[idx_T1_a]" IndexKind="Clustered" Storage="RowStore">
+																		</Object>
+																	</IndexScan>
+																</RelOp>
+																<RelOp NodeId="6" PhysicalOp="Clustered Index Seek" LogicalOp="Clustered Index Seek" EstimateRows="1" EstimatedRowsRead="1" EstimateIO="0.003125" EstimateCPU="0.0001581" AvgRowSize="11" EstimatedTotalSubtreeCost="0.0032831" TableCardinality="0" Parallel="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row">
+																	<OutputList>
+																		<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Column="x">
+																		</ColumnReference>
+																	</OutputList>
+																	<RunTimeInformation>
+																		<RunTimeCountersPerThread Thread="0" ActualRows="0" Batches="0" ActualElapsedms="0" ActualCPUms="0" ActualScans="0" ActualLogicalReads="0" ActualPhysicalReads="0" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" ActualEndOfScans="0" ActualExecutions="0" ActualExecutionMode="Row">
+																		</RunTimeCountersPerThread>
+																	</RunTimeInformation>
+																	<IndexScan Ordered="1" ScanDirection="FORWARD" ForcedIndex="0" ForceSeek="0" ForceScan="0" NoExpandHint="0" Storage="RowStore">
+																		<DefinedValues>
+																			<DefinedValue>
+																				<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Column="x">
+																				</ColumnReference>
+																			</DefinedValue>
+																		</DefinedValues>
+																		<Object Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Index="[idx_T2_a]" IndexKind="Clustered" Storage="RowStore">
+																		</Object>
+																		<SeekPredicates>
+																			<SeekPredicateNew>
+																				<SeekKeys>
+																					<Prefix ScanType="EQ">
+																						<RangeColumns>
+																							<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Column="a">
+																							</ColumnReference>
+																						</RangeColumns>
+																						<RangeExpressions>
+																							<ScalarOperator ScalarString="[Projectpt2].[dbo].[T1].[a]">
+																								<Identifier>
+																									<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="a">
+																									</ColumnReference>
+																								</Identifier>
+																							</ScalarOperator>
+																						</RangeExpressions>
+																					</Prefix>
+																				</SeekKeys>
+																			</SeekPredicateNew>
+																		</SeekPredicates>
+																		<Predicate>
+																			<ScalarOperator ScalarString="[Projectpt2].[dbo].[T1].[c]&gt;[Projectpt2].[dbo].[T2].[x]">
+																				<Compare CompareOp="GT">
+																					<ScalarOperator>
+																						<Identifier>
+																							<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T1]" Column="c">
+																							</ColumnReference>
+																						</Identifier>
+																					</ScalarOperator>
+																					<ScalarOperator>
+																						<Identifier>
+																							<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Column="x">
+																							</ColumnReference>
+																						</Identifier>
+																					</ScalarOperator>
+																				</Compare>
+																			</ScalarOperator>
+																		</Predicate>
+																	</IndexScan>
+																</RelOp>
+															</NestedLoops>
+														</RelOp>
+														<RelOp NodeId="7" PhysicalOp="Clustered Index Seek" LogicalOp="Clustered Index Seek" EstimateRows="1" EstimatedRowsRead="1" EstimateIO="0.003125" EstimateCPU="0.0001581" AvgRowSize="9" EstimatedTotalSubtreeCost="0.0032831" TableCardinality="0" Parallel="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row">
+															<OutputList>
+															</OutputList>
+															<RunTimeInformation>
+																<RunTimeCountersPerThread Thread="0" ActualRows="0" Batches="0" ActualElapsedms="0" ActualCPUms="0" ActualScans="0" ActualLogicalReads="0" ActualPhysicalReads="0" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" ActualEndOfScans="0" ActualExecutions="0" ActualExecutionMode="Row">
+																</RunTimeCountersPerThread>
+															</RunTimeInformation>
+															<IndexScan Ordered="1" ScanDirection="FORWARD" ForcedIndex="0" ForceSeek="0" ForceScan="0" NoExpandHint="0" Storage="RowStore">
+																<DefinedValues>
+																</DefinedValues>
+																<Object Database="[Projectpt2]" Schema="[dbo]" Table="[T3]" Index="[idx_T3_x]" IndexKind="Clustered" Storage="RowStore">
+																</Object>
+																<SeekPredicates>
+																	<SeekPredicateNew>
+																		<SeekKeys>
+																			<Prefix ScanType="EQ">
+																				<RangeColumns>
+																					<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T3]" Column="x">
+																					</ColumnReference>
+																				</RangeColumns>
+																				<RangeExpressions>
+																					<ScalarOperator ScalarString="[Projectpt2].[dbo].[T2].[x]">
+																						<Identifier>
+																							<ColumnReference Database="[Projectpt2]" Schema="[dbo]" Table="[T2]" Column="x">
+																							</ColumnReference>
+																						</Identifier>
+																					</ScalarOperator>
+																				</RangeExpressions>
+																			</Prefix>
+																		</SeekKeys>
+																	</SeekPredicateNew>
+																</SeekPredicates>
+															</IndexScan>
+														</RelOp>
+													</NestedLoops>
+												</RelOp>
+											</Sort>
+										</RelOp>
+									</StreamAggregate>
+								</RelOp>
+							</ComputeScalar>
+						</RelOp>
+					</QueryPlan>
+				</StmtSimple>
+			</Statements>
+		</Batch>
+	</BatchSequence>
+</ShowPlanXML>
